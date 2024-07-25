@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Entity
@@ -20,7 +21,7 @@ public class Product implements Serializable {
     private final Set<OrderItem> items = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
     private String name;
     private String description;
     private Double price;
@@ -29,7 +30,7 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Double price, String imgUrl) {
+    public Product(UUID id, String name, String description, Double price, String imgUrl) {
         super();
         this.id = id;
         this.name = name;
@@ -38,11 +39,11 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

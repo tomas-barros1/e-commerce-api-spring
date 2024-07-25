@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_category")
@@ -18,23 +19,23 @@ public class Category implements Serializable {
     private final Set<Product> products = new HashSet<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
     private String name;
 
     public Category() {
     }
 
-    public Category(Long id, String name) {
+    public Category(UUID id, String name) {
         super();
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

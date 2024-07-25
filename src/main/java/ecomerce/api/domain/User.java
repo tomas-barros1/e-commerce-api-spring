@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_user")
@@ -17,7 +18,7 @@ public class User implements Serializable {
     private final List<Order> orders = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
     private String name;
     private String email;
     private String phone;
@@ -26,7 +27,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long id, String name, String email, String phone, String password) {
+    public User(UUID id, String name, String email, String phone, String password) {
         super();
         this.id = id;
         this.name = name;
@@ -35,11 +36,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
