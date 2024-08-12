@@ -39,6 +39,7 @@ public class UserController {
         user.setEmail(userDTO.email());
         user.setPhone(userDTO.phone());
         user.setPassword(userDTO.password());
+        user.setId(null);
 
         User savedUser = userService.insert(user);
 
