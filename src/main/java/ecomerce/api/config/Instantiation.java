@@ -12,15 +12,11 @@ import java.util.Arrays;
 @Configuration
 public class Instantiation implements CommandLineRunner {
 
-    private final UserRepository userRepository;
-
-    private final OrderRepository orderRepository;
-
-    private final CategoryRepository categoryRepository;
-
-    private final ProductRepository productRepository;
-
-    private final OrderItemRepository orderItemRepository;
+    private UserRepository userRepository;
+    private OrderRepository orderRepository;
+    private CategoryRepository categoryRepository;
+    private ProductRepository productRepository;
+    private OrderItemRepository orderItemRepository;
 
     public Instantiation(UserRepository userRepository, OrderRepository orderRepository, CategoryRepository categoryRepository, ProductRepository productRepository, OrderItemRepository orderItemRepository) {
         this.userRepository = userRepository;
@@ -30,8 +26,8 @@ public class Instantiation implements CommandLineRunner {
         this.orderItemRepository = orderItemRepository;
     }
 
-    @Override
     public void run(String... args) throws Exception {
+
         Category cat1 = new Category(null, "Electronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");

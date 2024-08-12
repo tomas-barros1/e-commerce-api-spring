@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -26,12 +25,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findById(UUID id) {
+    public User findById(Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public void delete(UUID id) {
+    public void delete(Long id) {
         try {
             userRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -45,7 +44,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User update(UUID id, User obj) {
+    public User update(Long id, User obj) {
         try {
             User entity = userRepository.getReferenceById(id);
             updateData(entity, obj);

@@ -1,85 +1,88 @@
 package ecomerce.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_payments")
+@Table(name = "tb_payment")
 public class Payment implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private Instant moment;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+	@JsonIgnore
+	@OneToOne
+	@MapsId
+	private Order order;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant moment;
+	public Payment() {
+	}
 
-    @JsonIgnore
-    @OneToOne
-    @MapsId
-    private Order order;
+	public Payment(Long id, Instant moment, Order order) {
+		this.id = id;
+		this.moment = moment;
+		this.order = order;
+	}
 
-    public Payment() {
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Payment(UUID id, Instant moment, Order order) {
-        super();
-        this.id = id;
-        this.moment = moment;
-        this.order = order;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public UUID getId() {
-        return id;
-    }
+	public Instant getMoment() {
+		return moment;
+	}
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+	public void setMoment(Instant moment) {
+		this.moment = moment;
+	}
 
-    public Instant getMoment() {
-        return moment;
-    }
+	public Order getOrder() {
+		return order;
+	}
 
-    public void setMoment(Instant moment) {
-        this.moment = moment;
-    }
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 
-    public Order getOrder() {
-        return order;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Payment other = (Payment) obj;
-        if (id == null) {
-            return other.id == null;
-        } else return id.equals(other.id);
-    }
-
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Payment other = (Payment) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 }
