@@ -1,13 +1,10 @@
 package ecomerce.api.controllers;
 
-import ecomerce.api.domain.DTOs.UserDTO;
 import ecomerce.api.domain.User;
 import ecomerce.api.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,23 +27,6 @@ public class UserController {
     public ResponseEntity<User> findById(@PathVariable Long id) {
         User user = userService.findById(id);
         return ResponseEntity.ok().body(user);
-    }
-
-    @PostMapping
-    public ResponseEntity<User> insert(@RequestBody UserDTO userDTO) {
-        User user = new User();
-        user.setName(userDTO.name());
-        user.setEmail(userDTO.email());
-        user.setPhone(userDTO.phone());
-        user.setPassword(userDTO.password());
-        user.setId(null);
-
-        User savedUser = userService.insert(user);
-
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedUser.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(savedUser);
     }
 
     @DeleteMapping(value = "/{id}")

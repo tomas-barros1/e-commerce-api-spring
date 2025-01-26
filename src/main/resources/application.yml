@@ -10,3 +10,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+api:
+  security:
+    token:
+      secret: "senhasupersecre1238919171218321*"

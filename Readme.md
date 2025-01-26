@@ -1,9 +1,7 @@
 # E-commerce API
 
-Esta é uma API desenvolvida com base no curso Spring Boot, Hibernate, REST, Ionic, JWT, S3, MySQL, MongoDB
-ofertado pelo professor Nelio Alves na Udemy. Ela permite gerenciar produtos, categorias, usuários,
-pedidos
-e pagamentos.
+Esta é uma API desenvolvida com base no curso Java COMPLETO Programação Orientada a Objetos + Projetos ofertado pelo professor Nelio Alves na Udemy. Ela permite gerenciar produtos, categorias, usuários,
+pedidos e pagamentos.
 
 ## Funcionalidades
 
